@@ -42,6 +42,8 @@ export default function Dashboard({ user }) {
     loadBookings();
   }, [screens]);
 
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div className="dashboard">
       <div className="sky-layer"></div>
@@ -49,13 +51,16 @@ export default function Dashboard({ user }) {
 
       <header role="banner" className="dashboard-header">
         <div style={{display:'flex',gap:16,alignItems:'center'}}>
+          <button className="header-hamburger" aria-label="Open menu" onClick={() => setMobileMenuOpen(true)}>
+            <span></span><span></span><span></span>
+          </button>
           <button className="btn-logout" onClick={() => auth.signOut()} aria-label="Logout">Logout</button>
           <div className="logo">JustLoook</div>
         </div>
       </header>
 
       <div style={{display:'flex', gap:24, maxWidth:1200, margin:'0 auto', padding:'16px'}}>
-        <Nav active={route} onNavigate={setRoute} user={user} />
+        <Nav active={route} onNavigate={setRoute} user={user} mobileOpen={mobileMenuOpen} setMobileOpen={setMobileMenuOpen} />
 
         <main style={{flex:1}} role="main" aria-label="Dashboard content">
           {route === 'home' && (

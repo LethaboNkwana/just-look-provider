@@ -913,3 +913,130 @@ header{
     gap: var(--space-xl);
   }
 }
+
+/* Responsive enhancements for screen cards, thumbnails and forms */
+.screen-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.screen-thumbnail {
+  flex: 0 0 160px;
+  width: 160px;
+  height: 110px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.screen-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.screen-content {
+  flex: 1 1 auto;
+  min-width: 0; /* allow text truncation and proper wrapping */
+}
+
+/* Table wrapper for horizontal scrolling on small devices */
+.table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+img, .card img { max-width: 100%; height: auto; display: block; }
+
+@media (max-width: 900px) {
+  .screen-item { display: block; }
+  .screen-thumbnail { width: 100%; height: 180px; margin-bottom: 12px; }
+  .form-actions { flex-direction: column; gap: 12px; }
+  .btn.cancel { width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .screen-item { padding: 12px; }
+  .screen-thumbnail { height: 160px; }
+  .card { padding: 16px; }
+  input, textarea, select { padding: 10px; font-size: 0.95rem; }
+  .logo { font-size: 1.25rem; }
+}
+
+@media (max-width: 420px) {
+  input, select, textarea { font-size: 0.95rem; padding: 10px; }
+  .btn.primary { padding: 10px 12px; }
+  .dashboard { padding: 12px; margin: 12px; }
+  .form-actions { gap: 10px; }
+}
+
+/* Helpful note: wrap tables with .table-responsive to enable scrolling on narrow screens */
+
+/* Ensure navbar is hidden on mobile devices */
+@media (max-width: 900px) {
+  .nav { display: none !important; }
+}
+
+/* Mobile nav/hamburger — visible only on small screens */
+.nav-hamburger{
+  display:none;
+}
+
+@media (max-width:900px){
+  .nav-hamburger{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:6px;
+    width:44px;
+    height:38px;
+    padding:6px;
+    border-radius:8px;
+    background:transparent;
+    border:1px solid rgba(2,6,23,0.04);
+    align-self:flex-end;
+    margin:8px;
+    cursor:pointer;
+  }
+  .nav-hamburger span{
+    display:block;height:2px;background:var(--indigo);border-radius:2px;width:100%;
+  }
+
+  /* mobile overlay that slides in */
+  .mobile-nav-overlay{
+    position:fixed;inset:0;background:rgba(2,6,23,0.6);backdrop-filter:blur(6px);display:flex;justify-content:flex-end;z-index:2000;
+  }
+  .mobile-nav{width:320px;max-width:100%;background:var(--card);padding:20px;box-shadow:var(--shadow-2xl);height:100%;overflow:auto}
+  .mobile-nav-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .mobile-nav .nav-list{display:flex;flex-direction:column;gap:8px}
+  .mobile-nav .nav-item{padding:12px;border-radius:8px;background:transparent}
+  .mobile-nav .nav-item.active{background:linear-gradient(90deg, rgba(13,110,253,0.08), rgba(13,110,253,0.02));color:var(--primary);font-weight:600}
+  .nav-close{background:transparent;border:none;color:var(--muted);cursor:pointer}
+}
+
+/* Header hamburger (placed in dashboard header) */
+.header-hamburger{display:none}
+@media (max-width:900px){
+  .header-hamburger{display:flex;flex-direction:column;gap:6px;width:40px;padding:6px;border-radius:8px;background:transparent;border:1px solid rgba(2,6,23,0.04);align-items:center;justify-content:center}
+  .header-hamburger span{display:block;width:22px;height:2px;background:var(--indigo);border-radius:2px}
+}
+
+/* Auth screen specific responsive tweaks */
+@media (max-width: 900px) {
+  .auth-container { padding: 32px 20px; align-items: flex-start; }
+  .auth-container .card { max-width: 480px; width: 100%; margin: 0 auto; }
+  .auth-container .logo { font-size: 1.4rem; text-align: left; }
+}
+
+@media (max-width: 640px) {
+  .auth-container { padding: 20px 12px; }
+  .auth-container .card { max-width: 100%; width: calc(100% - 24px); padding: 18px; border-radius: 12px; }
+  .auth-container .card .logo { font-size: 1.25rem; margin-bottom: 6px; }
+  input, select, textarea { font-size: 0.95rem; padding: 10px; }
+  .form-meta { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .form-actions { flex-direction: column; gap: 10px; }
+  .btn.primary, .btn.cancel { width: 100%; }
+  .btn-logout { padding: 8px 12px; }
+}
+
+@media (max-width: 420px) {
+  .auth-container .card { padding: 14px; }
+  .logo { font-size: 1.1rem; }
+  input { padding: 9px; }
+}
